@@ -1,9 +1,10 @@
-package com.example.sfedu_exponent
+package com.example.sfedu_exponent.Started_page
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
 import androidx.viewpager2.widget.ViewPager2
+import com.example.sfedu_exponent.R
+import com.example.sfedu_exponent.Started_page.Adapters.ViewPager2.AdapterForStartPage
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //Обьявление ViewPager2 и присвоение ему адаптера (по типу RecyclerView)
+        /**Обьявление ViewPager2 и присвоение ему адаптера (по типу RecyclerView)*/
         viewPager = findViewById(R.id.pager)
         viewPager.orientation = ViewPager2.ORIENTATION_VERTICAL
         val adapter = AdapterForStartPage(supportFragmentManager, lifecycle)

@@ -1,11 +1,7 @@
-package com.example.sfedu_exponent
+package com.example.sfedu_exponent.Started_page.Fragments
 
-import AdapterForHidePanel
-import android.Manifest
-import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -15,35 +11,29 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.view.animation.TranslateAnimation
 import android.widget.ImageButton
 import android.widget.ImageView
-import android.widget.ProgressBar
-import android.widget.TableLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintLayout.LayoutParams
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProvider.NewInstanceFactory.Companion.instance
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
-import com.evernote.android.job.patched.internal.JobManager.instance
+import com.example.sfedu_exponent.R
+import com.example.sfedu_exponent.Started_page.Adapters.ViewPager2.AdapterForHidePanel
+import com.example.sfedu_exponent.Started_page.Adapters.RecuclerView.PartnerAdapter
+import com.example.sfedu_exponent.Started_page.DataClasses.Partner
+import com.example.sfedu_exponent.Started_page.TakePermissions
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
-import com.squareup.picasso.Picasso
 import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
 import kotlinx.android.synthetic.main.fragment_partners.*
-import okhttp3.internal.Internal.instance
-import okhttp3.internal.cache.DiskLruCache.Snapshot
 import java.util.*
 
 class Partners : Fragment(), PartnerAdapter.Listener {
 
     /**Переменные для работы с Firebase*/
-    val adapter=PartnerAdapter(this)
+    val adapter= PartnerAdapter(this)
     val storage = FirebaseStorage.getInstance()
     val database = FirebaseDatabase.getInstance()
     val reference = database.getReference("Partners")

@@ -1,11 +1,9 @@
-package com.example.sfedu_exponent
+package com.example.sfedu_exponent.Started_page.Fragments
 
 import android.animation.Animator
 import android.animation.AnimatorInflater
 import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
 import android.content.Intent
-import android.content.res.Resources
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -14,14 +12,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.webkit.WebView
-import android.webkit.WebViewClient
-import android.widget.Button
-import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
-import kotlinx.android.synthetic.main.fragment_about_e_x_p.*
+import com.example.sfedu_exponent.R
 
 class AboutEXP : Fragment() {
     lateinit var front_anim:AnimatorSet
@@ -57,8 +51,8 @@ class AboutEXP : Fragment() {
         card_back.cameraDistance=8000*scale
         card_front2.cameraDistance=8000*scale
         card_back2.cameraDistance=8000*scale
-        front_anim = AnimatorInflater.loadAnimator(requireContext(),R.animator.front_animator) as AnimatorSet
-        back_anim = AnimatorInflater.loadAnimator(requireContext(),R.animator.back_animator) as AnimatorSet
+        front_anim = AnimatorInflater.loadAnimator(requireContext(), R.animator.front_animator) as AnimatorSet
+        back_anim = AnimatorInflater.loadAnimator(requireContext(), R.animator.back_animator) as AnimatorSet
         val expandAnimation = AnimationUtils.loadAnimation(context, R.anim.expand_animation)
         val collapseAnimation = AnimationUtils.loadAnimation(context, R.anim.collapse_animation)
         front_anim.addListener(object : Animator.AnimatorListener {

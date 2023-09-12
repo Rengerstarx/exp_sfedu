@@ -1,16 +1,14 @@
-package com.example.sfedu_exponent
+package com.example.sfedu_exponent.Started_page.Adapters.RecuclerView
 
 import android.annotation.SuppressLint
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.sfedu_exponent.databinding.PartnerBinding
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import com.example.sfedu_exponent.R
+import com.example.sfedu_exponent.Started_page.DataClasses.Partner
 import com.squareup.picasso.Picasso
-import java.net.URL
 
 class PartnerAdapter(val listener: Listener): RecyclerView.Adapter<PartnerAdapter.PartnerHolder>() {
     val PartnerList=ArrayList<Partner>()
