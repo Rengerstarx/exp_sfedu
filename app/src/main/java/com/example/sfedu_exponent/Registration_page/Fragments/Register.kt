@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
+import android.widget.Toast
 import com.example.sfedu_exponent.R
 import com.google.firebase.database.FirebaseDatabase
 import java.security.SecureRandom
@@ -31,19 +32,10 @@ class Register : Fragment() {
         val view = inflater.inflate(R.layout.fragment_register, container, false)
         val database = FirebaseDatabase.getInstance()
         val reference = database.getReference("Users")
-
         sharedPreferences = requireContext().getSharedPreferences("Roles", Context.MODE_PRIVATE)
-        sharedPreferencesReg = requireContext().getSharedPreferences("RegHashId", Context.MODE_PRIVATE)
-        editor = sharedPreferencesReg.edit()
         role = sharedPreferences.getString("Roles", "Guest").toString()
-        ShowEdit(view)
-        hash=sharedPreferencesReg.getString("RegHashId", "null").toString()
-        if(hash=="null") {
-            hash = generateRandomHash()
-            editor.putString("RegHashId", hash)
-            editor.apply()
-        }
         linearLayout = view.findViewById(R.id.Liner)
+        ShowEdit(view)
         view.findViewById<Button>(R.id.button2).setOnClickListener {
             var marker = true
             for (i in 0 until linearLayout.childCount) {
@@ -54,6 +46,16 @@ class Register : Fragment() {
                 }
             }
             if(marker) {
+                val surname = view.findViewById<EditText>(R.id.text_Surname).text
+                val nameX = view.findViewById<EditText>(R.id.text_Name).text
+                sharedPreferencesReg = requireContext().getSharedPreferences("RegHashId_${surname}_${nameX}", Context.MODE_PRIVATE)
+                editor = sharedPreferencesReg.edit()
+                hash=sharedPreferencesReg.getString("RegHashId_${surname}_${nameX}", "null").toString()
+                if(hash=="null") {
+                    hash = generateRandomHash()
+                    editor.putString("RegHashId_${surname}_${nameX}", hash)
+                    editor.apply()
+                }
                 reference.child(hash).child("Роль").setValue(role)
                 for (i in 0 until linearLayout.childCount) {
                     val childView: View = linearLayout.getChildAt(i)
@@ -63,7 +65,8 @@ class Register : Fragment() {
                     }
                 }
                 requireActivity().supportFragmentManager.popBackStack()
-            }
+            }else
+                Toast.makeText(requireContext(), "Не все поля заполненны", Toast.LENGTH_LONG).show()
         }
         return view
     }
