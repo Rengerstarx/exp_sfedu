@@ -7,8 +7,8 @@
     tools:context=".Registration_page.Fragments.Info_menu">
 
 
-    <Button
-        android:id="@+id/button5"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonExpert"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -31,14 +31,14 @@
             android:layout_height="match_parent"
             android:gravity="center">
 
-            <Button
-                android:id="@+id/button"
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonGuest"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Гость" />
 
-            <Button
-                android:id="@+id/button2"
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonSpeaker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Спикер" />
@@ -49,14 +49,14 @@
             android:layout_height="match_parent"
             android:gravity="center">
 
-            <Button
-                android:id="@+id/button3"
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonInvestor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Инвестор" />
 
-            <Button
-                android:id="@+id/button4"
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonSponsor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Спонсор" />

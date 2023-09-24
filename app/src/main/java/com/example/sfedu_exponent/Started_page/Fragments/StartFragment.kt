@@ -12,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.example.sfedu_exponent.Admins_page.AdminActivity
 import com.example.sfedu_exponent.R
 import com.example.sfedu_exponent.Registration_page.RegistrationActivity
 import com.example.sfedu_exponent.Started_page.MainActivity
@@ -47,6 +48,8 @@ class StartFragment : Fragment() {
             .attach(layout)
             .withListener(object : FilterMenu.OnMenuChangeListener {
                 override fun onMenuItemClick(view: View, position: Int) {
+                    val intent = Intent(requireActivity(), AdminActivity::class.java)
+                    startActivity(intent)
                 }
                 override fun onMenuCollapse() {
                 }

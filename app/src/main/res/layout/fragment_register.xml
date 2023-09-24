@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Registration_page.Fragments.Register">
+
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="Отправить"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/Liner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/text_Surname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Фамилия"
+                android:maxLines="1"
+                android:paddingLeft="5dp" />
+
+            <EditText
+                android:id="@+id/text_Name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Имя"
+                android:maxLines="1"
+                android:paddingLeft="5dp" />
+
+            <EditText
+                android:id="@+id/text_LastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Отчество (при наличии)"
+                android:maxLines="1"
+                android:paddingLeft="5dp" />
+
+            <EditText
+                android:id="@+id/text_City"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Город"
+                android:maxLines="1"
+                android:paddingLeft="5dp" />
+
+            <EditText
+                android:id="@+id/text_Work_Study"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Место работы или учёбы"
+                android:maxLines="1"
+                android:paddingLeft="5dp" />
+
+            <EditText
+                android:id="@+id/text_Inters"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Сферы интересов"
+                android:paddingLeft="5dp" />
+
+            <EditText
+                android:id="@+id/text_ProjectName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Название проекта"
+                android:paddingLeft="5dp" />
+
+            <EditText
+                android:id="@+id/text_Intdrodaction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Описание проекта"
+                android:paddingLeft="5dp" />
+
+            <EditText
+                android:id="@+id/text_Technologic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Технологии, используемые в проекте"
+                android:paddingLeft="5dp" />
+
+            <EditText
+                android:id="@+id/text_Plan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="План развития проекта"
+                android:paddingLeft="5dp" />
+
+            <EditText
+                android:id="@+id/text_Stadi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Стадия на которой находится проект"
+                android:paddingLeft="5dp" />
+
+            <EditText
+                android:id="@+id/text_Dop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Дополнительные сведения о проекте"
+                android:paddingLeft="5dp" />
+
+            <EditText
+                android:id="@+id/text_Phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Телефон"
+                android:paddingLeft="5dp" />
+
+            <EditText
+                android:id="@+id/text_Email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Почта"
+                android:paddingLeft="5dp" />
+
+            <EditText
+                android:id="@+id/text_SocialSeti"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ссылка на социальные сети"
+                android:paddingLeft="5dp" />
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

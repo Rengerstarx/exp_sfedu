@@ -28,4 +28,9 @@
         <u>Итоги exp(sfedu) апрель 2021</u>.
     </string>
     <string name="WhereWe"><font color="black" size="24"><b>Южный федеральный университет\n</b></font><font color="black" size="23"><b>Зимний сад\n</b></font><font color="black" size="20">г. Таганрог, пер. Некрасовский, 44\n</font><font color="black" size="20">Плёнкин Антон Павлович</font></string>
+    <string name="Guest">Ты гость Гарри</string>
+    <string name="Investor">Ты инвестор Гарри</string>
+    <string name="Speaker">Ты спикер Гарри</string>
+    <string name="Sponsor">Ты спонсор Гарри</string>
+    <string name="Expert">Ты эксперт Гарри</string>
 </resources>
