@@ -19,6 +19,9 @@ class Info_menu : Fragment() {
 
     lateinit var sharedPreferences: SharedPreferences
     lateinit var editor: Editor
+    private val guestArray = "true true true true false false false false false false false false true true true"
+    private val SpeakerArray = "true true true true true true true true true true true true true true true"
+    private val OutherArray = "true true true true true true false false false false false false true true true"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,25 +33,26 @@ class Info_menu : Fragment() {
         editor = sharedPreferences.edit()
 
         view.findViewById<Button>(com.example.sfedu_exponent.R.id.buttonGuest).setOnClickListener {
-            openRole("Guest")
+            openRole("Guest", guestArray)
         }
         view.findViewById<Button>(com.example.sfedu_exponent.R.id.buttonInvestor).setOnClickListener {
-            openRole("Investor")
+            openRole("Investor",OutherArray)
         }
         view.findViewById<Button>(com.example.sfedu_exponent.R.id.buttonSpeaker).setOnClickListener {
-            openRole("Speaker")
+            openRole("Speaker",SpeakerArray)
         }
         view.findViewById<Button>(com.example.sfedu_exponent.R.id.buttonSponsor).setOnClickListener {
-            openRole("Sponsor")
+            openRole("Sponsor",OutherArray)
         }
         view.findViewById<Button>(com.example.sfedu_exponent.R.id.buttonExpert).setOnClickListener {
-            openRole("Expert")
+            openRole("Expert",OutherArray)
         }
         return view
     }
 
-    fun openRole(role: String){
+    fun openRole(role: String, arrayFields: String){
         editor.putString("Roles", role)
+        editor.putString("ArrayFields", arrayFields)
         editor.apply()
         val fragmentTransaction: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(com.example.sfedu_exponent.R.id.frame_layout, Info_about_roles()).addToBackStack(null)

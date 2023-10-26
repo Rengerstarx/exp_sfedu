@@ -19,6 +19,13 @@
         android:theme="@style/Theme.Sfedu_EXPonent"
         tools:targetApi="31">
         <activity
+            android:name=".LiveActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".Admins_page.AdminActivity"
             android:exported="false">
             <meta-data

@@ -17,13 +17,13 @@ import java.security.SecureRandom
 
 class Register : Fragment() {
 
-    lateinit var sharedPreferences: SharedPreferences
-    lateinit var sharedPreferencesReg: SharedPreferences
-    lateinit var role: String
-    lateinit var hash: String
-    lateinit var linearLayout: LinearLayout
-    lateinit var editor: SharedPreferences.Editor
-
+    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var sharedPreferencesReg: SharedPreferences
+    private lateinit var role: String
+    private lateinit var hash: String
+    private lateinit var linearLayout: LinearLayout
+    private lateinit var editor: SharedPreferences.Editor
+    private var ArrayRole: MutableList<Boolean> = mutableListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,24 +34,28 @@ class Register : Fragment() {
         val reference = database.getReference("Users")
         sharedPreferences = requireContext().getSharedPreferences("Roles", Context.MODE_PRIVATE)
         role = sharedPreferences.getString("Roles", "Guest").toString()
+        for (s in sharedPreferences.getString("ArrayFields", "").toString().split(" ")) {
+            ArrayRole.add(s.toBoolean())
+        }
         linearLayout = view.findViewById(R.id.Liner)
-        ShowEdit(view)
+        showEdit(view)
         view.findViewById<Button>(R.id.button2).setOnClickListener {
             var marker = true
             for (i in 0 until linearLayout.childCount) {
                 val childView: View = linearLayout.getChildAt(i)
                 if (childView is EditText) {
-                    if(childView.text.toString()=="" && childView.visibility==View.VISIBLE)
-                        marker=false
+                    if (childView.text.toString() == "" && childView.visibility == View.VISIBLE)
+                        marker = false
                 }
             }
-            if(marker) {
+            if (marker) {
                 val surname = view.findViewById<EditText>(R.id.text_Surname).text
                 val nameX = view.findViewById<EditText>(R.id.text_Name).text
-                sharedPreferencesReg = requireContext().getSharedPreferences("RegHashId_${surname}_${nameX}", Context.MODE_PRIVATE)
+                sharedPreferencesReg =
+                    requireContext().getSharedPreferences("RegHashId_${surname}_${nameX}", Context.MODE_PRIVATE)
                 editor = sharedPreferencesReg.edit()
-                hash=sharedPreferencesReg.getString("RegHashId_${surname}_${nameX}", "null").toString()
-                if(hash=="null") {
+                hash = sharedPreferencesReg.getString("RegHashId_${surname}_${nameX}", "null").toString()
+                if (hash == "null") {
                     hash = generateRandomHash()
                     editor.putString("RegHashId_${surname}_${nameX}", hash)
                     editor.apply()
@@ -65,53 +69,29 @@ class Register : Fragment() {
                     }
                 }
                 requireActivity().supportFragmentManager.popBackStack()
-            }else
-                Toast.makeText(requireContext(), "Не все поля заполненны", Toast.LENGTH_LONG).show()
+            } else
+                Toast.makeText(requireContext(), "Не все поля заполнены", Toast.LENGTH_LONG).show()
         }
         return view
     }
 
-    fun generateRandomHash():String {
+    private fun generateRandomHash(): String {
         val random = SecureRandom()
         val bytes = ByteArray(16)
         random.nextBytes(bytes)
         return bytes.joinToString("") { "%02x".format(it) }
     }
 
-    fun ShowEdit(view: View){
+    private fun showEdit(view: View) {
         for (i in 0 until linearLayout.childCount) {
             val childView: View = linearLayout.getChildAt(i)
             if (childView is EditText) {
+                if (ArrayRole[i] == true)
+                    childView.visibility = View.VISIBLE
+                else
+                    childView.visibility = View.GONE
                 childView.setText("")
             }
         }
-        if(role=="Guest") {
-            view.findViewById<EditText>(R.id.text_Work_Study).visibility = View.GONE
-            view.findViewById<EditText>(R.id.text_Inters).visibility=View.GONE
-        }
-        else {
-            view.findViewById<EditText>(R.id.text_Work_Study).visibility = View.VISIBLE
-            view.findViewById<EditText>(R.id.text_Inters).visibility=View.VISIBLE
-        }
-        if(role!="Speaker"){
-            view.findViewById<EditText>(R.id.text_ProjectName).visibility=View.GONE
-            view.findViewById<EditText>(R.id.text_Intdrodaction).visibility=View.GONE
-            view.findViewById<EditText>(R.id.text_Technologic).visibility=View.GONE
-            view.findViewById<EditText>(R.id.text_Plan).visibility=View.GONE
-            view.findViewById<EditText>(R.id.text_Stadi).visibility=View.GONE
-            view.findViewById<EditText>(R.id.text_Dop).visibility=View.GONE
-            view.findViewById<EditText>(R.id.text_Inters).visibility=View.GONE
-        }else{
-            view.findViewById<EditText>(R.id.text_ProjectName).visibility=View.VISIBLE
-            view.findViewById<EditText>(R.id.text_Intdrodaction).visibility=View.VISIBLE
-            view.findViewById<EditText>(R.id.text_Technologic).visibility=View.VISIBLE
-            view.findViewById<EditText>(R.id.text_Plan).visibility=View.VISIBLE
-            view.findViewById<EditText>(R.id.text_Stadi).visibility=View.VISIBLE
-            view.findViewById<EditText>(R.id.text_Dop).visibility=View.VISIBLE
-        }
-
     }
-
-
-
 }
