@@ -89,7 +89,6 @@ class AboutEXP : Fragment() {
             collapseAnimation.setAnimationListener(object : Animation.AnimationListener {
                 override fun onAnimationStart(animation: Animation?) {}
                 override fun onAnimationRepeat(animation: Animation?) {}
-
                 override fun onAnimationEnd(animation: Animation?) {
                     layoutParams.height = textHide1Height
                     overlayLayout.layoutParams = layoutParams

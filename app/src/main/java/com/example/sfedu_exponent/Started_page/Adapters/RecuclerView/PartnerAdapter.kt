@@ -11,7 +11,7 @@ import com.example.sfedu_exponent.Started_page.DataClasses.Partner
 import com.squareup.picasso.Picasso
 
 class PartnerAdapter(val listener: Listener): RecyclerView.Adapter<PartnerAdapter.PartnerHolder>() {
-    val PartnerList=ArrayList<Partner>()
+    private var PartnerList=ArrayList<Partner>()
 
     class PartnerHolder(item: View): RecyclerView.ViewHolder(item) {
         val binding = PartnerBinding.bind(item)
@@ -37,8 +37,14 @@ class PartnerAdapter(val listener: Listener): RecyclerView.Adapter<PartnerAdapte
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun PartnerCreate(url: String, uid: Int){
-        PartnerList.add(Partner(PartnerList.size,url, uid))
+    fun PartnerCreateElement(partner: Partner){
+        PartnerList.add(partner)
+        notifyDataSetChanged()
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun PartnerCreateAll(partnerList: MutableList<Partner>){
+        PartnerList= partnerList as ArrayList<Partner>
         notifyDataSetChanged()
     }
 

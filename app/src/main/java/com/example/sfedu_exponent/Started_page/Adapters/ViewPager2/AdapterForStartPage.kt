@@ -28,5 +28,4 @@ class AdapterForStartPage(fragmentManager: FragmentManager, lifecycle: Lifecycle
         }
     }
 
-
 }

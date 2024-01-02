@@ -14,11 +14,13 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintLayout.LayoutParams
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
+import com.example.sfedu_exponent.FirebaseAPI
 import com.example.sfedu_exponent.R
 import com.example.sfedu_exponent.Started_page.Adapters.ViewPager2.AdapterForHidePanel
 import com.example.sfedu_exponent.Started_page.Adapters.RecuclerView.PartnerAdapter
@@ -34,9 +36,7 @@ class Partners : Fragment(), PartnerAdapter.Listener {
 
     /**Переменные для работы с Firebase*/
     val adapter= PartnerAdapter(this)
-    val storage = FirebaseStorage.getInstance()
-    val database = FirebaseDatabase.getInstance()
-    val reference = database.getReference("Partners")
+    val firebase = FirebaseAPI(FirebaseDatabase.getInstance(), FirebaseStorage.getInstance())
 
     /**Переменные для всплывающего окна*/
     var ActiveVk = ""
@@ -99,7 +99,6 @@ class Partners : Fragment(), PartnerAdapter.Listener {
         indicator=view.findViewById(R.id.worm_dots_indicator)
         adapterPager2 = AdapterForHidePanel()
         phoneCallPermissionManager = TakePermissions(requireActivity())
-        //imagePokaz = view.findViewById(R.id.imageSmena)
 
         /**Подклчение анимации*/
         expandAnimation = AnimationUtils.loadAnimation(context, R.anim.expand_animation)
@@ -107,24 +106,14 @@ class Partners : Fragment(), PartnerAdapter.Listener {
         AnimationInit()
 
         /**Заполнение RecyclerView*/
-        reference.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                // Перебираем каждый объект и выводим значение поля "LogoName"
-                for (partnerSnapshot in dataSnapshot.children) {
-                    val logoName = partnerSnapshot.child("LogoName").value
-                    val _uid = partnerSnapshot.child("KeyNumber").value.toString().toInt()
-                    storage.reference.child("Logotips/${logoName}").downloadUrl.addOnSuccessListener { uri ->
-                        val imageUrl = uri.toString()
-                        adapter.PartnerCreate(imageUrl,_uid)
-                        println("$logoName $_uid")
-                    }
-                }
-            }
-            override fun onCancelled(databaseError: DatabaseError) {
-                //Обработка ошибки
-                println("Failed to read value: ${databaseError.toException()}")
-            }
-        })
+        //println(firebase.TakeAllPartnersDataList(adapter))
+        firebase.TakeAllPartnersDataList{ partners ->  
+            println(partners)
+            adapter.PartnerCreateAll(partners)
+        }
+        //firebase.TakeAllPartnersDataList(adapter)
+
+
         /**Кликеры*/
         view.findViewById<ImageButton>(R.id.imageArrow).setOnClickListener { //Кликер для свертки
             ShowInfo()
@@ -158,7 +147,7 @@ class Partners : Fragment(), PartnerAdapter.Listener {
     }
 
     /**Функция отвечающая за работу всплывающего окна*/
-    private fun ShowInfo(uid: Int = 0){
+    fun ShowInfo(uid: Int = 0){
         if (uid==0) { //Закрытие окна
             //Скрываем окно
             overlayLayout.visibility=View.INVISIBLE
@@ -168,22 +157,19 @@ class Partners : Fragment(), PartnerAdapter.Listener {
             timer.cancel()
             partnerView.isEnabled=true
         } else {
-            //Проявляем окно
-            overlayLayout.visibility=View.VISIBLE
-            /**Инициализация всех параметров окна*/
-            reference.child(uid.toString()).addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    SnapshotInit(dataSnapshot)
-                }
-                override fun onCancelled(databaseError: DatabaseError) {
-                    // Обработка ошибки
-                    Log.e("FirebaseError", "Не удалось прочитать значение.", databaseError.toException())
-                }
-            })
-            //Запускаем анимацию развертки
-            overlayLayout.startAnimation(expandAnimation)
-            //Отключаем кликабельность общего списка
-            partnerView.isEnabled=false
+            val snapshot = firebase.TakePartner(uid)
+            if(snapshot==null)
+                Toast.makeText(requireContext(),"Error in dataSnopshot",Toast.LENGTH_LONG).show()
+            else{
+                SnapshotInit(snapshot)
+                //Проявляем окно
+                overlayLayout.visibility=View.VISIBLE
+                /**Инициализация всех параметров окна*/
+                //Запускаем анимацию развертки
+                overlayLayout.startAnimation(expandAnimation)
+                //Отключаем кликабельность общего списка
+                partnerView.isEnabled=false
+            }
         }
     }
 
