@@ -1,0 +1,80 @@
+<resources>
+    <string name="app_name">Sfedu(EXP) ver2.0</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="exp_sfedu"><font color='#3048CF'>exp</font><font color='#FFFFFF'>(sfedu)</font></string>
+    <string name="textSlogan">Новая степень развития твоего проекта</string>
+    <string name="GoButton"><font color='#3048CF'>↓  </font><font color='#FFFFFF'>Поехали</font><font color='#3048CF'>  ↓</font></string>
+    <string name="abot_us_txt">
+        <font size="25"><b>Что такое SFedU Exponent?\n</b></font>
+        <font size="20">SFedU Exponent — это мероприятие на котором каждый может представить свой проект, получить обратную связь или найти инвестора.</font>
+    </string>
+
+    <string name="Itogi"><u>Итоги</u></string>
+    <string name="Itog_dec_2022"><u>Итоги exp(sfedu) декабрь 2022</u></string>
+    <string name="Itog_may_2022"><u>Итоги exp(sfedu) май 2022</u></string>
+    <string name="Itog_nov_2021"><u>Итоги exp(sfedu) ноябрь 2021</u></string>
+    <string name="Itog_apr_2021"><u>Итоги exp(sfedu) апрель 2021</u></string>
+    <string name="WhereWe"><font color="black" size="24"><b>Южный федеральный университет\n</b></font><font color="black" size="23"><b>Зимний сад\n</b></font><font color="black" size="20">г. Таганрог, пер. Некрасовский, 44\n</font><font color="black" size="20">Плёнкин Антон Павлович</font></string>
+
+    <string name="Speak">Если у вас есть сообственный проект и вы хотите получить инвестиции то тогда вам обязательно надо попробовать себя в роли спикера</string>
+    <string name="Inv">Хотите инвестировать в успеешный проект или найти проект права на который хотите приобрести, то эта роль для вас</string>
+    <string name="Gst">Просто хотите посмотреть на мероприятие со стороны?  Тогда эта роль для вас</string>
+    <string name="Exp">Хотите поделиться своим мнение или дать совет начинающему стратаперу, то тогда вам сюда</string>
+
+    <string-array name="Guest">
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
+        <item>false</item>
+        <item>false</item>
+        <item>false</item>
+        <item>false</item>
+        <item>false</item>
+        <item>false</item>
+        <item>false</item>
+        <item>false</item>
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
+    </string-array>
+
+    <string-array name="Other">
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
+        <item>false</item>
+        <item>false</item>
+        <item>false</item>
+        <item>false</item>
+        <item>false</item>
+        <item>false</item>
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
+    </string-array>
+
+    <string-array name="Speaker">
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
+    </string-array>
+
+</resources>
